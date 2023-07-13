@@ -9,14 +9,13 @@ local has_words_before = function()
 end
 
 
-
 cmp.setup{
     completion = {
         completeopt = 'menu,menuone,noinsert'
     },
     preselect = cmp.PreselectMode.None,
     snippet = {
-        expand = function(args) 
+        expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
     },
@@ -34,6 +33,7 @@ cmp.setup{
                 fallback()
             end
         end, { "i", "s" }),
+
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -69,4 +69,3 @@ cmp.setup.cmdline(':', {
     }),
 })
 
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()

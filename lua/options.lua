@@ -1,8 +1,8 @@
 local fn = vim.fn
 local opt = vim.opt
 
-opt.clipboard = "unnamedplus"
-opt.completeopt = { "menu", "menuone", "noselect" } 
+
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
 
 opt.tabstop = 4
@@ -28,8 +28,12 @@ opt.visualbell = false
 opt.backup = false
 opt.undofile = true
 opt.undodir = fn.expand('~/.config/nvim/undodir')
+opt.scrolloff = 8
+opt.signcolumn = "no"
 
 opt.termguicolors = true
 
 vim.g.shell = "pwsh"
 vim.g.floaterm_shell = "pwsh"
+
+vim.g.mapleader = ' '

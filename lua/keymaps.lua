@@ -9,7 +9,6 @@ local opts = {
 local set = vim.keymap.set
 
 
-vim.g.mapleader = ' '
 set('', '<Space>', '<Nop>', opts)
 
 -- navigate buffers
@@ -34,6 +33,16 @@ set('n', '<C-s>', ':w<CR>', opts)
 
 set('i', 'ç', ';', opts)
 set('i', 'Ç', ':', opts)
+
+set("v", "J", ":m '>+1<CR>gv=gv")
+set("v", "K", ":m '<-2<CR>gv=gv")
+
+set("n", "<Leader>y", '"+y', opts)
+set("n", "<Leader>p", '"+p', opts)
+set("v", "<Leader>y", '"+y', opts)
+
+set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 
 -- launch love TODO: change kitty to something else
 if fn.has("win32") or fn.has("win64") then

@@ -19,14 +19,14 @@ return require('packer').startup(function(use)
 
     use {'neovim/nvim-lspconfig' }
     use { 'hrsh7th/nvim-cmp', config = function() require('config.nvim-cmp') end }
-    use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
-    use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }        -- buffer auto-completion
-    use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }          -- path auto-completion
-    use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }       -- cmdline auto-completion
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-buffer' }        -- buffer auto-completion
+    use { 'hrsh7th/cmp-path' }          -- path auto-completion
+    use { 'hrsh7th/cmp-cmdline' }       -- cmdline auto-completion
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
 
-    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason.nvim', run = ":MasonUpdate" }
     use { 'williamboman/mason-lspconfig.nvim'}
 
     use {
@@ -54,13 +54,8 @@ return require('packer').startup(function(use)
         end
     }
 
-    use { 'nvim-orgmode/orgmode', config = function()
-            require('orgmode').setup{}
-            require('config.orgmode')
-        end
-    }
-
     use 'wakatime/vim-wakatime'
+
 
     use {'brenoprata10/nvim-highlight-colors', config = function()
             require('nvim-highlight-colors').setup {}
@@ -72,6 +67,30 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
+
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {                                      -- Optional
+                'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
+            },
+            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},     -- Required
+            {'hrsh7th/cmp-nvim-lsp'}, -- Required
+            {'L3MON4D3/LuaSnip'},     -- Required
+        }
+    }
+
+
+
+
 
     require("gruvbox").setup({ transparent_mode = true })
 
