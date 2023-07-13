@@ -42,9 +42,9 @@ return require('packer').startup(function(use)
     use { 'voldikss/vim-floaterm', config = function() require("config.floaterm") end }
 
     use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.2',
-      requires = { {'nvim-lua/plenary.nvim'} },
-      config = function() require("config.telescope") end,
+        'nvim-telescope/telescope.nvim', tag = '0.1.2',
+        requires = { {'nvim-lua/plenary.nvim'} },
+        config = function() require("config.telescope") end,
     }
 
     use {
@@ -62,7 +62,11 @@ return require('packer').startup(function(use)
 
     use 'wakatime/vim-wakatime'
 
-    use 'brenoprata10/nvim-highlight-colors'
+    use {'brenoprata10/nvim-highlight-colors', config = function()
+            require('nvim-highlight-colors').setup {}
+            require('config.colors')
+        end
+    }
 
     use {
         "windwp/nvim-autopairs",

@@ -29,5 +29,7 @@ opt.backup = false
 opt.undofile = true
 opt.undodir = fn.expand('~/.config/nvim/undodir')
 
+opt.termguicolors = true
+
 vim.g.shell = "pwsh"
 vim.g.floaterm_shell = "pwsh"
