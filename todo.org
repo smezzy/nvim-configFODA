@@ -1,0 +1,5 @@
+* Plugins to install
+    - https://github.com/ms-jpq/chadtree/tree/chad
+    - https://github.com/folke/trouble.nvim
+    - https://github.com/xiyaowong/transparent.nvim
+    - https://github.com/ms-jpq/coq_nvim/tree/coq/docs
