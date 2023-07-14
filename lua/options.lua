@@ -30,6 +30,7 @@ opt.undofile = true
 opt.undodir = fn.expand('~/.config/nvim/undodir')
 opt.scrolloff = 8
 opt.signcolumn = "no"
+opt.wrap = false
 
 opt.termguicolors = true
 

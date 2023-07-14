@@ -21,7 +21,12 @@ lsp.set_sign_icons({
   info = '»'
 })
 
+vim.diagnostic.config({
+  underline = false,
+})
+
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+
