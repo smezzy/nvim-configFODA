@@ -11,10 +11,13 @@ require("mason").setup({
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({buffer = bufnr})
+    lsp.default_keymaps({ buffer = bufnr })
     require "lsp_signature".on_attach({
         bind = true,
-    }, bufnr)
+        handler_opts = {
+            border = "single"
+        }
+    }, bufnr);
 end)
 
 
@@ -34,5 +37,6 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
--- require("lsp_signature").on_attach() 
+vim.cmd [[hi link LspSignatureActiveParameter @operator]]

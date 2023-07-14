@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
     use 'vimwiki/vimwiki'
     require("config.vimwiki")
 
-    require("gruvbox").setup({ transparent_mode = true })
+    require("config.gruvbox")
 
     if packer_bootstrap then
         require('packer').sync()
