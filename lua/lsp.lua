@@ -11,18 +11,22 @@ require("mason").setup({
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+    lsp.default_keymaps({buffer = bufnr})
+    require "lsp_signature".on_attach({
+        bind = true,
+    }, bufnr)
 end)
 
+
 lsp.set_sign_icons({
-  error = '✘',
-  warn = '▲',
-  hint = '⚑',
-  info = '»'
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = '»'
 })
 
 vim.diagnostic.config({
-  underline = false,
+    underline = false,
 })
 
 -- (Optional) Configure lua language server for neovim
@@ -30,3 +34,5 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
+
+-- require("lsp_signature").on_attach() 

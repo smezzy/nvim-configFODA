@@ -46,8 +46,8 @@ set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- launch love TODO: change kitty to something else
 if fn.has("win32") or fn.has("win64") then
-    set('n', '<F5>', ':!start lovec .&<CR><CR>', opts)
-    set('n', '<A-l>', ':!start lovec .&<CR><CR>', opts)
+    set('n', '<F5>', ':!cd build/ && start lovec . &<CR><CR>', opts)
+    set('n', '<A-l>', ':!cd build/ && start lovec . &<CR><CR>', opts)
 elseif fn.has("unix") then
     set('n', '<F5>', ':!kitty -e love .&<CR><CR>', opts)
     set('n', '<A-l>', ':!kitty -e love .&<CR><CR>', opts)
