@@ -9,6 +9,7 @@ telescope.setup {
         color_devicons = false,
         file_ignore_patterns = {
             'node_modules',
+            '__lua__output',
             "%.png", "%.jpg", "%.jpeg", "%.gif", "%.bmp",
             "%.fnt", "%.ttf", "%.woff2",
             'build', 'builds', 'assets'
