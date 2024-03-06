@@ -16,15 +16,15 @@ local function toggleVimwikiListItem()
     vim.cmd('VimwikiToggleListItem')
 
     local line = vim.fn.getline('.')
-    if line:match('.*`'..prefix..' [^`]*') then
-        line = line:gsub(' `'..prefix..'[^`]*`', ''):gsub('`%([^)]*%)`', ''):gsub('%s*$', ''):gsub('`$', '')
+    if line:match('.*`' .. prefix .. ' [^`]*') then
+        line = line:gsub(' `' .. prefix .. '[^`]*`', ''):gsub('`%([^)]*%)`', ''):gsub('%s*$', ''):gsub('`$', '')
     else
-        line = line:gsub('%s*$', '') .. ' `'..prefix..' (' .. os.date('%d-%m-%Y %H:%M') .. ')`'
+        line = line:gsub('%s*$', '') .. ' `' .. prefix .. ' (' .. os.date('%d-%m-%Y %H:%M') .. ')`'
     end
     vim.fn.setline('.', line)
 end
 
-vim.keymap.set('n', '<Leader><space>', toggleVimwikiListItem, {silent = true, noremap = true})
+vim.keymap.set('n', '<Leader><space>', toggleVimwikiListItem, { silent = true, noremap = true })
 
 
 -- Highlight completed todo items

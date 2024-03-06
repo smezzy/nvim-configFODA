@@ -8,9 +8,10 @@ local luasnip = require("luasnip")
 --     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 -- end
 
-cmp.setup{
+cmp.setup {
     completion = {
-        completeopt = 'menu,menuone,noinsert'
+        completeopt = 'menu,menuone,noinsert',
+        autocomplete = false,
     },
     preselect = cmp.PreselectMode.None,
     snippet = {
@@ -48,7 +49,8 @@ cmp.setup{
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "lsp_signature"},
+        { name = "lsp_signature" },
+        { name = "codeium" },
     }, {
         { name = 'buffer' }
     })
@@ -70,3 +72,23 @@ cmp.setup.cmdline(':', {
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+local auto_complete = false
+local function toggle_auto_complete()
+    auto_complete = not auto_complete
+    if auto_complete then
+        cmp.setup({
+            completion = {
+                autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged }
+            }
+        })
+    else
+        cmp.setup({
+            completion = {
+                autocomplete = false
+            }
+        })
+    end
+end
+
+vim.api.nvim_create_user_command("ToggleAutoCmp", toggle_auto_complete, {})
