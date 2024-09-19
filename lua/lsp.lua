@@ -14,8 +14,6 @@ lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
-
-
 lsp.set_sign_icons({
     error = '✘',
     warn = '▲',
@@ -58,6 +56,6 @@ require 'lspconfig'.gdscript.setup {
 
 lsp.setup()
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 vim.cmd [[hi link LspSignatureActiveParameter @operator]]

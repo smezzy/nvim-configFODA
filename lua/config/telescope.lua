@@ -31,7 +31,22 @@ telescope.setup {
         -- picker_name = {
         --   picker_config_key = value,
         find_files = {
-            theme = 'ivy'
+            theme = 'dropdown',
+            prompt_prefix = "  ",
+            selection_caret = "* ",
+            previewer = false,
+            layout_config = {
+                height = 0.25,
+                width = 0.4,
+            },
+            -- borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└', '├', '┤' }
+            -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰', '├', '┤' },
+
+            borderchars = {
+                prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+                results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+                preview = { "─", "│", "─", "│", "┌", "┐", '┘', '└' },
+            },
         },
         buffers = {
             theme = 'dropdown'
@@ -55,6 +70,12 @@ telescope.setup {
         vertical = { height = 32 }
     }
 }
+---- hightlight
+vim.cmd [[
+    highlight! link TelescopeSelection Visual
+]]
+-- vim.cmd([[ hi! TelescopeSelection guibg=Blue guifg=White ]])
+
 telescope.load_extension "file_browser"
 
 local builtin = require('telescope.builtin')

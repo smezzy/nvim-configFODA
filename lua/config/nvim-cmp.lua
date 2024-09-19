@@ -1,5 +1,5 @@
 local cmp = require("cmp")
-
+local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
 -- local has_words_before = function()
@@ -8,7 +8,38 @@ local luasnip = require("luasnip")
 --     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 -- end
 
+vim.cmd [[
+  highlight! CmpItemKindFunction guifg=#56B6C2
+  highlight! CmpItemKindMethod guifg=#56B6C2
+  highlight! CmpItemKindClass guifg=#E5C07B
+  highlight! CmpItemKindVariable guifg=#C678DD
+  highlight! CmpItemKindKeyword guifg=#D4D4D4
+  highlight! CmpItemKindText guifg=#98C379
+  highlight! CmpItemKindDefault guifg=#ABB2BF
+]]
+
 cmp.setup {
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol', -- show only symbol annotations
+            maxwidth = 50,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...',     -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labeldetails = false, -- show labeldetails in menu. disabled by default
+
+            -- the function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (see [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+                local kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
+                vim_item.abbr = string.format("%s %s", kind, vim_item.abbr)
+                vim_item.kind = ""
+
+                return vim_item
+            end
+        })
+    },
+
     completion = {
         completeopt = 'menu,menuone,noinsert',
         autocomplete = false,
@@ -90,5 +121,6 @@ local function toggle_auto_complete()
         })
     end
 end
+toggle_auto_complete()
 
 vim.api.nvim_create_user_command("ToggleAutoCmp", toggle_auto_complete, {})

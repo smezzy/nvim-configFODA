@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
     use { 'ellisonleao/gruvbox.nvim' }
     use "blazkowolf/gruber-darker.nvim"
     use 'cocopon/iceberg.vim'
+    use 'rose-pine/neovim'
 
 
     -- lsp ide stuff
@@ -32,6 +33,7 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use { 'williamboman/mason.nvim', run = ":MasonUpdate" }
     use { 'williamboman/mason-lspconfig.nvim' }
+    use { 'onsails/lspkind.nvim' }
 
     use {
         'nvim-treesitter/nvim-treesitter',

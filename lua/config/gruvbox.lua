@@ -1,4 +1,4 @@
-return require("gruvbox").setup({
+require("gruvbox").setup({
     transparent_mode = not vim.g.neovide,
     underline = false,
     bold = false,
@@ -11,3 +11,8 @@ return require("gruvbox").setup({
         folds = false,
     },
 })
+
+
+vim.cmd [[
+    highlight! NormalFloat guibg=#3c3836
+]]

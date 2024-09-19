@@ -1,8 +1,10 @@
 local fn = vim.fn
 local opt = vim.opt
 
+
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
+opt.mousemodel = 'extend'
 
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -21,22 +23,22 @@ opt.ignorecase = false
 opt.smartcase = true
 opt.smartindent = true
 opt.laststatus = 0
+-- opt.cmdheight =
 opt.writebackup = false
 opt.swapfile = false
 opt.visualbell = false
 opt.backup = false
 opt.undofile = true
-opt.undodir = fn.expand('~/.config/nvim/undodir')
+opt.undodir = fn.expand('~/.local/.undodir')
 opt.scrolloff = 8
 opt.signcolumn = "no"
 opt.wrap = false
 opt.termguicolors = true
 opt.fillchars = { eob = " " }
-
 opt.foldmethod = "marker"
 
-vim.g.shell = "pwsh"
-vim.g.floaterm_shell = "pwsh"
+vim.g.shell = "zsh"
+vim.g.floaterm_shell = "zsh"
 
 vim.g.mapleader = ' '
 vim.g.skip_ts_context_commentstring_module = true
