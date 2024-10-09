@@ -1,16 +1,8 @@
-require("rose-pine").setup {
-    styles = {
-        italic = false,
-        bold = false,
-        transparency = true,
-    }
-}
-
 local colorscheme
 if vim.g.neovide then
     colorscheme = "gruber-darker"
 else
-    colorscheme = "rose-pine-main"
+    colorscheme = "gruvbox"
 end
 
 
@@ -21,3 +13,10 @@ if not ok then
     return
 end
 
+require("rose-pine").setup {
+    styles = {
+        italic = false,
+        bold = false,
+        transparency = true,
+    }
+}

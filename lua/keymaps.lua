@@ -70,9 +70,9 @@ set('n', '<A-l>', ':wa<CR> :!kitty -e love .<CR><CR>', opts)
 local ln_idx = 1
 local line_numbers = {
     [1] = { true, false },
-    [2] = { false, true },
-    [3] = { true, true },
-    [4] = { false, false },
+    [2] = { false, false },
+    [3] = { false, true },
+    [4] = { true, true },
 }
 
 set('n', '<leader>tnn', function()
