@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
     use { 'ellisonleao/gruvbox.nvim' }
     use "blazkowolf/gruber-darker.nvim"
     use 'cocopon/iceberg.vim'
+    use 'rose-pine/neovim'
 
 
     -- lsp ide stuff
@@ -32,6 +33,7 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use { 'williamboman/mason.nvim', run = ":MasonUpdate" }
     use { 'williamboman/mason-lspconfig.nvim' }
+    use { 'onsails/lspkind.nvim' }
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -57,6 +59,9 @@ return require('packer').startup(function(use)
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     }
+
+
+    use { 'RRethy/nvim-treesitter-endwise' }
 
     -- project management
     use 'Shatur/neovim-session-manager'
@@ -109,8 +114,21 @@ return require('packer').startup(function(use)
     use 'pigpigyyy/yuescript-vim'
 
 
+    -- latex stuff
+    use 'lervag/vimtex'
+    use 'SirVer/ultisnips'
+    use 'tpope/vim-dispatch'
+
+
     -- require plugin configs
     require "config"
+
+    -- Requires nvim-treesitter installed
+    require('nvim-treesitter.configs').setup {
+        endwise = {
+            enable = true,
+        },
+    }
 
     if packer_bootstrap then
         require('packer').sync()

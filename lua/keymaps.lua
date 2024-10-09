@@ -45,34 +45,40 @@ set("v", "<Leader>y", '"+y', opts)
 
 set("n", "<Leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- window managment
+set("n", "<Leader>ws", "<C-w>s", opts)
+set("n", "<Leader>wv", "<C-w>v", opts)
+set("n", "<Leader>wq", "<C-w>q", opts)
+set("n", "<Leader>wh", "<C-w>h", opts)
+set("n", "<Leader>wl", "<C-w>l", opts)
+set("n", "<Leader>wj", "<C-w>j", opts)
+set("n", "<Leader>wk", "<C-w>k", opts)
 
--- launch love TODO: change kitty to something else
-if fn.has("win32") or fn.has("win64") then
-    -- set('n', '<F5>', ':!cd build/ && start lovec . &<CR><CR>', opts)
-    -- set('n', '<A-l>', ':!cd build/ && start lovec . &<CR><CR>', opts)
-    set('n', '<F5>', ':w<CR> :!start run_love.bat &<CR><CR>', opts)
-    set('n', '<A-l>', ':w<CR> :!start run_love.bat &<CR><CR>', opts)
-elseif fn.has("unix") then
-    set('n', '<F5>', ':!kitty -e love .&<CR><CR>:wa<CR>', opts)
-    set('n', '<A-l>', ':!kitty -e love .&<CR><CR>', opts)
-end
+-- -- launch love TODO: change kitty to something else
+-- if fn.has("win32") or fn.has("win64") then
+--     -- set('n', '<F5>', ':!cd build/ && start lovec . &<CR><CR>', opts)
+--     -- set('n', '<A-l>', ':!cd build/ && start lovec . &<CR><CR>', opts)
+--     -- set('n', '<F5>', ':w<CR> :!start run_love.bat &<CR><CR>', opts)
+--     -- set('n', '<A-l>', ':w<CR> :!start run_love.bat &<CR><CR>', opts)
+-- elseif fn.has("unix") then
+--     set('n', '<F5>', ':wa<CR> :!blackbox -c love .<CR><CR>', opts)
+--     set('n', '<A-l>', ':wa<CR> :!blackbox -c love .<CR><CR>', opts)
+-- end
+set('n', '<F5>', ':wa<CR> :!kitty -e love .<CR><CR>', opts)
+set('n', '<A-l>', ':wa<CR> :!kitty -e love .<CR><CR>', opts)
 
-
--- toggles
-local line_numbers = true
-local relative_numbers = true
-
-
-set('n', '<leader>tnr', function()
-    relative_numbers = not relative_numbers
-    vim.opt.number = not relative_numbers
-    vim.opt.relativenumber = relative_numbers
-end)
+local ln_idx = 1
+local line_numbers = {
+    [1] = { true, false },
+    [2] = { false, true },
+    [3] = { true, true },
+    [4] = { false, false },
+}
 
 set('n', '<leader>tnn', function()
-    line_numbers = not line_numbers
-    vim.opt.number = line_numbers and not relative_numbers
-    vim.opt.relativenumber = line_numbers and relative_numbers
+    vim.opt.number = line_numbers[ln_idx][1]
+    vim.opt.relativenumber = line_numbers[ln_idx][2]
+    ln_idx = (ln_idx % #line_numbers) + 1
 end)
 
 local cmp = require "cmp"
