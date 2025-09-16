@@ -110,15 +110,6 @@ return require('packer').startup(function(use)
     }
 
 
-    -- stuff for specific languages
-    use 'pigpigyyy/yuescript-vim'
-
-
-    -- latex stuff
-    use 'lervag/vimtex'
-    use 'SirVer/ultisnips'
-    use 'tpope/vim-dispatch'
-
 
     -- require plugin configs
     require "config"
